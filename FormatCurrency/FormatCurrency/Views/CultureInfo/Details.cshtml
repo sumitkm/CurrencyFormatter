@@ -1,0 +1,50 @@
+﻿@model FormatCurrency.Models.IsoCultureInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IsoCultureInfo</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageCultureName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguageCultureName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisplayName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CultureCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CultureCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISO639xValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISO639xValue)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

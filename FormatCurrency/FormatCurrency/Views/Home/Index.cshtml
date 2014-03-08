@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Currency Format - Code Generator</h1>
+    <p class="lead">A simple App that spits out some code to format string/decimal as Currency using a Culture Code of your choice.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-2 form-group">
+        Select Culture: <select id="cultureOptions"
+                                class="form-control"
+                                data-bind="options: dataList(), optionsText: 'LanguageCultureName', value: selectedCulture, optionsCaption: 'Choose...'"></select>
+    </div>
+</div>
+<div class="row" data-bind="with: selectedCulture()">
+    <div class="col-md-10 col-md-offset-1">
+        <ul>
+            <li>Language Culture Name: <b><span data-bind="text: LanguageCultureName"></span></b></li>
+            <li>Display Name: <b><span data-bind="text: DisplayName"></span></b></li>
+            <li>Culture Code: <b><span data-bind="text: CultureCode"></span></b></li>
+            <li>ISO 639x Value: <b><span data-bind="text: ISO639xValue"></span></b></li>
+        </ul>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                C# Code
+            </div>
+            <div class="panel-body">
+                <div class="col-md-10 col-md-offset-1">
+                    <pre>
+string fare = "123000.0000";
+decimal parsed = decimal.Parse(fare, CultureInfo.InvariantCulture);
+CultureInfo cultureInfo = new CultureInfo(<b>"<span id="currentCulture" data-bind="text: LanguageCultureName"></span>"</b>);
+NumberFormatInfo cultureNFO = (NumberFormatInfo)cultureInfo.NumberFormat.Clone();
+// If you don't want the CurrencySymbol, uncomment the following line
+// cultureNFO.CurrencySymbol = string.Empty;
+string text = string.Format(cultureNFO, "{0:c}", parsed);</pre>
+                </div>
+            </div>
+            <div class="panel-footer">
+                Formatted String: <b><span data-bind="text: $parent.formattedString"></span></b>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/formatCurrency.js"></script>
+}
